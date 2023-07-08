@@ -120,7 +120,7 @@ export default function Home() {
   useEffect(() => {
     setTimeout(() => {
       setIsLoaded(true);
-    }, 100);
+    }, 2000);
   }, []);
 
   return (
