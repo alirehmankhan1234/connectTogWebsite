@@ -1,0 +1,119 @@
+.loginContainer {
+  .logoContainer {
+    margin-top: 4.4rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    color: #222B45 !important;
+
+    .logo {
+      width: 11rem;
+      height: 7rem;
+    }
+
+    .appName {
+      color: #222B45;
+      font-family: "Quicksand", Arial, Helvetica, sans-serif;
+      font-weight: bold;
+      font-size: 2rem;
+      margin-top: 0.5rem;
+    }
+
+  }
+
+  .divider {
+    color: #A3A3A3;
+    background-color: #A3A3A3;
+    width: 14.8rem;
+    height: 0.1rem;
+    margin: auto;
+    margin-top: 1.3rem;
+  }
+
+  .loginForm {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin-top: 3.75rem;
+
+    .fieldWrapper{
+      margin: auto
+    }
+    .inputField {
+      font-family: 'Poppins', Arial, Helvetica, sans-serif;
+      color: #222B45;
+      background-color: white;
+      border-radius: 1rem;
+      width: 19rem;
+      height: 2.8125rem;
+      padding-left: 2.6rem;
+      box-shadow: 0.1rem 0.1rem 0.2rem 0.2rem rgb(233, 232, 232);
+    }
+    .passwordField{
+      .keyIcon{
+        position: absolute;
+        padding-top: 0.85rem;
+        padding-left: 0.85rem;
+      }
+      .eyeIcon{
+        position: absolute;
+        padding-top: 0.85rem;
+        margin-left: 16.85rem;
+      }
+    }
+    .rememberMeContainer{
+      margin-top: 0.4rem;
+      width: 19rem;
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+      .rememberMeCheckbox{
+        color: #222B45;
+        font-size: 0.75rem;
+        font-weight: 400;
+      }
+      .forgotPassowrdContainer{
+        color: #222B45;
+        font-size: 0.75rem;
+        font-weight: 400;
+      }
+    }
+    
+    .joinBtn {
+      background-color: #F9AC19 !important;
+      color: #222B45;
+    }
+    
+  }
+
+  .orDividerContainer{
+    display: flex;
+    flex-direction: row;
+    gap:0.2rem;
+    padding-top: 4.5rem;
+    color:#A3A3A3;
+    width:19rem;
+    margin: auto;
+
+    .orDivider{
+      background-color: #A3A3A3;
+      width: 7.5rem;
+      height:0.1rem;
+      margin: auto;
+    }
+  }
+
+  .thirdPartyLinksContainer{
+    display: flex;
+    flex-direction: row;
+    gap: 1rem;
+    width:19rem;
+    margin: auto;
+    margin-top: 4.5rem;
+
+    div{
+      margin: auto;
+    }
+  }
+}

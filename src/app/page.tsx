@@ -1,113 +1,163 @@
-import Image from 'next/image'
+"use client";
+import Image from "next/image";
+import { useEffect, useState } from "react";
+import CarLoader from "@/components/loader";
+import NavBar from "@/components/NavBar";
+import Footer from "@/components/Footer";
+import classes from "./home.module.scss";
+import { useRouter } from "next/navigation";
+import homeBanner from "../assets/homeBanner.jpg";
+import Carousel from "../components/Carousel";
+import Card from "../components/Card"
+import { IWhyChooseUsPoints, IHowItWorks } from "../interfaces/IWhyChooseUsPoints";
 
-export default function Home() {
+const LoaderWithText = () => {
+  const router = useRouter();
+
   return (
-    <main className="flex min-h-screen flex-col items-center justify-between p-24">
-      <div className="z-10 w-full max-w-5xl items-center justify-between font-mono text-sm lg:flex">
-        <p className="fixed left-0 top-0 flex w-full justify-center border-b border-gray-300 bg-gradient-to-b from-zinc-200 pb-6 pt-8 backdrop-blur-2xl dark:border-neutral-800 dark:bg-zinc-800/30 dark:from-inherit lg:static lg:w-auto  lg:rounded-xl lg:border lg:bg-gray-200 lg:p-4 lg:dark:bg-zinc-800/30">
-          Get started by editing&nbsp;
-          <code className="font-mono font-bold">src/app/page.tsx</code>
-        </p>
-        <div className="fixed bottom-0 left-0 flex h-48 w-full items-end justify-center bg-gradient-to-t from-white via-white dark:from-black dark:via-black lg:static lg:h-auto lg:w-auto lg:bg-none">
-          <a
-            className="pointer-events-none flex place-items-center gap-2 p-8 lg:pointer-events-auto lg:p-0"
-            href="https://vercel.com?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            By{' '}
-            <Image
-              src="/vercel.svg"
-              alt="Vercel Logo"
-              className="dark:invert"
-              width={100}
-              height={24}
-              priority
-            />
-          </a>
+    <>
+      <div className={classes.logoContainer}>
+        <div className={classes.logo}>
+          <CarLoader />
+        </div>
+        <div
+          className={classes.appName}
+          onClick={() => {
+            router.push("/letsGetStarted");
+          }}
+        >
+          ConnectTog
         </div>
       </div>
+    </>
+  );
+};
 
-      <div className="relative flex place-items-center before:absolute before:h-[300px] before:w-[480px] before:-translate-x-1/2 before:rounded-full before:bg-gradient-radial before:from-white before:to-transparent before:blur-2xl before:content-[''] after:absolute after:-z-20 after:h-[180px] after:w-[240px] after:translate-x-1/3 after:bg-gradient-conic after:from-sky-200 after:via-blue-200 after:blur-2xl after:content-[''] before:dark:bg-gradient-to-br before:dark:from-transparent before:dark:to-blue-700 before:dark:opacity-10 after:dark:from-sky-900 after:dark:via-[#0141ff] after:dark:opacity-40 before:lg:h-[360px]">
-        <Image
-          className="relative dark:drop-shadow-[0_0_0.3rem_#ffffff70] dark:invert"
-          src="/next.svg"
-          alt="Next.js Logo"
-          width={180}
-          height={37}
-          priority
-        />
+const WhyChooseUs = () => {
+  const whyChooseUsPoints: IWhyChooseUsPoints[] = [
+    {
+      heading: "Cost Savings",
+      desc: `Carpooling allows you to split the costs of fuel, tolls, and parking expenses with your fellow travelers. By sharing the expenses, you can significantly reduce your transportation costs and put more money back in your pocket.`,
+    },
+    {
+      heading: "Reduce Your Carbon Footprint",
+      desc: `By carpooling, you'll contribute to a greener environment. Sharing a ride means fewer cars on the road, resulting in reduced emissions and air pollution.`,
+    },
+    {
+      heading: "Eco-Friendly Solution",
+      desc: `Carpooling contributes to reducing carbon emissions and environmental impact. By combining trips and optimizing routes, we can collectively make a positive impact on our planet by reducing pollution and promoting sustainability.`,
+    },
+    {
+      heading: "Community Building",
+      desc: `Carpooling creates opportunities to connect with people in your area and build meaningful relationships. It's a chance to meet new friends, network, and expand your social circle while traveling together.`,
+    },
+    {
+      heading: "Convenience and Flexibility",
+      desc: `Our user-friendly platform makes it easy to find and join carpool groups that align with your travel needs. With a range of options available, you can choose the most convenient pick-up and drop-off locations and customize your travel schedule to fit your lifestyle.`,
+    },
+  ];
+
+  return (
+    <div className={classes?.whyChooseUs} id='whyChooseUs'>
+      <div className={classes?.whyChooseUsHeading}>Why Choose Us?</div>
+      <div className={classes?.carousalContainer}>
+        <Carousel totalItems={whyChooseUsPoints.length} loop>
+          {whyChooseUsPoints?.map((el: IWhyChooseUsPoints, idx: number) => {
+            return (
+              <div className="relative h-64 flex-[0_0_100%]" key={idx}>
+                {/* use object-cover + fill since we don't know the height and width of the parent */}
+                <div className={classes.whyChooseUsCarousalItem}>
+                  <div className={classes.whyChooseUsCarousalItemHeading}>{el?.heading}</div>
+                  <p className={classes.whyChooseUsCarousalItemDesc}>{el?.desc}</p>
+                </div>
+              </div>
+            );
+          })}
+        </Carousel>
       </div>
+    </div>
+  );
+};
 
-      <div className="mb-32 grid text-center lg:mb-0 lg:grid-cols-4 lg:text-left">
-        <a
-          href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className={`mb-3 text-2xl font-semibold`}>
-            Docs{' '}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className={`m-0 max-w-[30ch] text-sm opacity-50`}>
-            Find in-depth information about Next.js features and API.
-          </p>
-        </a>
 
-        <a
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800 hover:dark:bg-opacity-30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className={`mb-3 text-2xl font-semibold`}>
-            Learn{' '}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className={`m-0 max-w-[30ch] text-sm opacity-50`}>
-            Learn about Next.js in an interactive course with&nbsp;quizzes!
-          </p>
-        </a>
-
-        <a
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className={`mb-3 text-2xl font-semibold`}>
-            Templates{' '}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className={`m-0 max-w-[30ch] text-sm opacity-50`}>
-            Explore the Next.js 13 playground.
-          </p>
-        </a>
-
-        <a
-          href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className={`mb-3 text-2xl font-semibold`}>
-            Deploy{' '}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className={`m-0 max-w-[30ch] text-sm opacity-50`}>
-            Instantly deploy your Next.js site to a shareable URL with Vercel.
-          </p>
-        </a>
-      </div>
-    </main>
+const HowItWorks = ()=>{
+  const howItWorks: IHowItWorks[] = [
+    {
+      heading: "Sign Up",
+      desc: `Create an account on our platform, providing your basic information and preferences. You can specify your commuting or travel routes, time preferences, and vehicle details if you're willing to drive.`,
+    },
+    {
+      heading: "Search or Create Rides",
+      desc: `Browse through existing rides posted by other members or create your own ride. Specify the departure and destination locations, date, time, and any other relevant details.`,
+    },
+    {
+      heading: "Connect and Coordinate",
+      desc: `Once you find a ride or receive requests from other members, use our messaging system to communicate and coordinate the details. Discuss pick-up points, drop-off locations, and any special requirements.`,
+    },
+    {
+      heading: "Enjoy the Ride",
+      desc: `Carpooling creates opportunities to connect with people in your area and build meaningful relationships. It's a chance to meet new friends, network, and expand your social circle while traveling together.`,
+    },
+    {
+      heading: "Share Costs",
+      desc: `At the end of the trip, divide the total cost of the ride among the passengers. Our platform provides an automated payment system to make it easy and transparent for everyone.
+      Join our carpooling community today and start enjoying the benefits of shared transportation.`,
+    },
+  ];
+  return (
+  <div className={classes.howItWorks} id='howItWorks'>
+    <div className={classes.howItWorksHeading}>How It Works:</div>
+    <div className={classes.howItWorksSteps}>
+      {howItWorks?.map((el: IHowItWorks, idx: number)=><Card heading={el?.heading} desc={el?.desc} key={idx} />)}
+    </div>
+  </div>
   )
+}
+
+export default function Home() {
+  const [isLoaded, setIsLoaded] = useState<boolean>(false);
+
+  useEffect(() => {
+    setTimeout(() => {
+      setIsLoaded(true);
+    }, 0);
+  }, []);
+
+  return (
+    <>
+      <NavBar />
+      {!isLoaded ? (
+        <LoaderWithText />
+      ) : (
+        <div className={classes.home}>
+          <div className={classes.rideSharingImgContainer}>
+            <Image
+              src={homeBanner}
+              alt="ride sharing"
+              width={1000}
+              height={500}
+            />
+            <div className={classes.rideSharingContent}>
+              <div className={classes.heading}>
+                Welcome to ConnectTog: Your Trusted Carpooling Service
+              </div>
+              <br />
+              <br />
+              <div className={classes.desc}>
+                <p>Save Time, Money, and the Environment with CommuteShare</p>
+                <br />
+                Are you tired of commuting alone every day? Looking for a
+                cost-effective and eco-friendly way to travel? Look no further!
+                CommuteShare is here to revolutionize your daily commute with
+                our convenient carpooling service.
+              </div>
+            </div>
+          </div>
+          <WhyChooseUs />
+          <HowItWorks />
+          <Footer />
+        </div>
+      )}
+    </>
+  );
 }

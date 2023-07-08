@@ -1,0 +1,25 @@
+
+@import "../../styles/colorVaraiables.scss";
+
+.navBarContainer{
+    background-color: white;
+    color: $yellowColor;
+
+
+    .contactUsBtn{
+        background-color: $yellowColor !important;
+        color: $lightGrayColor !important
+
+    }
+    .contactUsBtn:hover{
+        background-color: $lightGrayColor !important;
+        color: $yellowColor !important;
+    }
+
+}
+
+.navBar{
+    background-color: $yellowColor !important;
+    color: $lightGrayColor !important;
+
+}
